@@ -1,0 +1,8 @@
+cse1:
+  account_number: ACCOUNTNUMBER 
+  access_key: ACCESS_KEY
+  secret_key: SECRET_KEY
+cse2:
+  account_number: ACCOUNT_NUM
+  access_key: ACCESS_KEY
+  secret_key: SECRET_KEY
