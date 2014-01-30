@@ -116,28 +116,30 @@ def getCostPerHour(regionToCost, platform ,serverSize):
             #print regionName
             for instanceTypes in regions['instanceTypes']:
                 instanceType = instanceTypes['type']
-                decodedInstanceType = INSTANCE_TYPE_MAPPING(serverSize)
-                #print "decoded instance type: " + decodedInstanceType
-                if (decodedInstanceType == instanceType):
-                    for sizes in instanceTypes['sizes']:
-                         #decodedInstanceSize = INSTANCE_SIZE_MAPPING(serverSize)
+#                decodedInstanceType = INSTANCE_TYPE_MAPPING(serverSize)
+                #decodedInstanceType = serverSize
+#                print "instance type: " + instanceType
+                #if (decodedInstanceType == instanceType):
+                for sizes in instanceTypes['sizes']:
+                     decodedInstanceSize = INSTANCE_SIZE_MAPPING(serverSize)
                          #
-                         decodedInstanceSize = serverSize
-                         size = sizes['size']
-                         #print "size: " + size
-                         if (decodedInstanceSize == size):
+                     decodedInstanceSize = serverSize
+                     size = sizes['size']
+#                     print "size: " + size
+                         #if (decodedInstanceSize == size):
+                     if (serverSize == size):
                              #print "decoded size: " + decodedInstanceSize
-                             for valueColumns in sizes['valueColumns']:
-                                 OSTypeName = valueColumns['name']
-                                 platformOSName = OSDecoder(platform)
-                                 if (OSTypeName == platformOSName):
-                                     ServerCost = valueColumns['prices']['USD']
+                         for valueColumns in sizes['valueColumns']:
+                             OSTypeName = valueColumns['name']
+                             platformOSName = OSDecoder(platform)
+                             if (OSTypeName == platformOSName):
+                                 ServerCost = valueColumns['prices']['USD']
 
 
     return ServerCost
 	
 #def main ():
-#   serverCostSS = getCostPerHour("us-east-1","linux","m1.large")
+#  serverCostSS = getCostPerHour("us-east-1","linux","c3.xlarge")
 #   print serverCostSS
 #if __name__ == "__main__":
 #    main()

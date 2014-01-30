@@ -118,7 +118,7 @@ def Servers(accessKey,secretKey):
 #            file2write.writelines('Region: ' + str(regionConnection).replace("EC2Connection:ec2.",""))
 #            file2write.writelines('\n')
             
-#            serverTable = PrettyTable (["Server Name", "Owner/Creator","InstanceType","LaunchTime","Hours Running","Cost/Hour","Running Cost","Architecture","OS","ID","Public_dns_name","IP","State","Label"])
+            serverTable = PrettyTable (["Server Name", "Owner/Creator","InstanceType","LaunchTime","Hours Running","Cost/Hour","Running Cost","Architecture","OS","ID","Public_dns_name","IP","State","Label"])
             serverTable = PrettyTable (["Server Name", "Owner/Creator","InstanceType","Launch Date","Cost/Hour","Running Cost"])
             serverTable.align["Server Name"] = "l"
             serverTable.padding_width = 1
@@ -131,7 +131,7 @@ def Servers(accessKey,secretKey):
                     instance = reservation.instances
                     for instDetails in instance:
                         serverState = str(instDetails.__dict__['_state'])
-                        if (serverState != 'stopped(80)'):
+                        if (serverState != 'stopped(80)' and serverState != 'terminated(48)'):
                             serverName = str(instDetails.__dict__['tags']['Name'])
                             ownerCreator = str(instDetails.__dict__['tags']['es:Owner'])
                             instanceType = str(instDetails.__dict__['instance_type'])
@@ -206,7 +206,7 @@ def main(accounts_file):
         file2write.writelines("Total cost for the Account : $" + str(round(totalAccountCost,2)))
         file2write.writelines('\n')
         totalAcccountCost = 0
-        print "TotalAccountCost in for loop: " + str(totalAccountCost)
+#        print "TotalAccountCost in for loop: " + str(totalAccountCost)
 
 #    
 if __name__ == "__main__":
